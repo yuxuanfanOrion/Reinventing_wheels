@@ -1,5 +1,62 @@
 import numpy as np
 
+input = np.array([1, 2, 3, 4, 5])
+kernel = np.array([0.5, 1, 0.5])
+
+'''First method: using numpy.convolve() function
+    
+    This method is suitable for 1D, 2D and 3D convolution.
+    
+    The function numpy.convolve() computes the convolution of two one-dimensional sequences.
+    
+    It takes two arguments: the input sequence and the kernel, and returns the output sequence.
+    
+    The kernel is a one-dimensional sequence that is convolved with the input sequence.
+    
+    The output sequence has the same length as the input sequence, and represents the result of the convolution.
+    
+    The convolution is computed by multiplying the input sequence with the kernel, and then summing up the products.
+    
+    The result is a single value for each position in the output sequence.
+    The convolution can be performed using the following code:
+
+'''
+def conv_anyd(input, kernel):
+        '''
+        This function performs convolution on any-dimensional input.
+        '''
+        return np.convolve(input, kernel, mode='valid')
+
+'''Second method: implementing convolution without using numpy.convolve() function
+    This method is suitable for 1D convolution only.
+'''
+def conv1d_handler(input, kernel, mode):
+        if mode == 0 or mode == 'same':
+            convolution_result = np.zeros(input.shape[0])
+            
+            if kernel.shape[0] % 2 == 0:
+                left_padding = int(kernel.shape[0] / 2)
+                right_padding = left_padding - 1
+            else:
+                padding = int((kernel.shape[0] - 1) / 2)
+
+            for i in range(convolution_result.shape[0]):
+                pass
+
+
+        elif mode == 1 or mode == 'valid':
+            convolution_result = np.zeros(input.shape[0] - kernel.shape[0] + 1)
+            for i in range(convolution_result.shape[0]):
+                convolution_result[i] = np.sum(input[i:i+kernel.shape[0]] * kernel)
+        
+        else:
+            raise ValueError("Unsupported mode, only''same'' or '0' and ''valid'' or '1' are supported.")
+
+        return convolution_result
+output = conv1d_handler(input, kernel, 0)
+print(output)
+
+
 class ConvolutionLayer:
     def __init__(self, weight, stride=1):
         """
