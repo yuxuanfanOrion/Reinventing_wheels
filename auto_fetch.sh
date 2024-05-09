@@ -21,6 +21,7 @@ do_merge() {
 # Function to perform git pull
 do_pull() {
   echo "Pulling the latest changes from the remote repository..."
+  git fetch origin master
   git pull origin master
 }
 
