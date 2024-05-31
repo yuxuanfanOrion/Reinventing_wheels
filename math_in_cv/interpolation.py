@@ -1,3 +1,0 @@
-
-
-# Nearest Neighbor Interpolation
